@@ -1,0 +1,48 @@
+{
+  "name": "accepted",
+  "version": "0.0.1",
+  "description": "Small module that checks if the given object has given properties and are not null or undefined",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- ./test/ --recursive",
+    "lint": "$(npm bin)/eslint .",
+    "eslint-pre-commit": "./scripts/eslint-pre-commit",
+    "auto-test": "nodemon --ignore coverage/ -x \"npm test && npm råun lint\""
+  },
+  "pre-commit": [
+    "eslint-pre-commit",
+    "lint",
+    "test"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Geexteam/accepted.git"
+  },
+  "keywords": [
+    "accepted",
+    "if-else",
+    "object-check",
+    "object-validate",
+    "not-null",
+    "not-undefined",
+    "object-has-properties"
+  ],
+  "author": "Renzo Roso <renzo@geex.company>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Geexteam/accepted/issues"
+  },
+  "homepage": "https://github.com/Geexteam/accepted#readme",
+  "devDependencies": {
+    "eslint": "^2.9.0",
+    "eslint-config-defaults": "^9.0.0",
+    "eslint-plugin-filenames": "^0.2.0",
+    "istanbul": "^0.4.3",
+    "mocha": "^2.4.5",
+    "pre-commit": "^1.1.2",
+    "should": "^8.3.1"
+  }
+}
