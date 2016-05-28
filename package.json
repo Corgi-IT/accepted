@@ -1,6 +1,6 @@
 {
   "name": "accepted",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Small module that checks if the given object has given properties and are not null or undefined",
   "main": "app.js",
   "directories": {
