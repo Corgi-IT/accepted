@@ -5,28 +5,16 @@ const accepted = require('../app');
 describe('accepted', function () {
 
     describe('error', function() {
-        it('Should throw an error if the first parameter is not an object', function() {
-            let check = 1;
-            try {
-                accepted([], []);
-                check = 2;
-            } catch (e) {
-                check = 3;
-            }
+        it('Should throw an error if the first parameter is not an Object', function() {
+            const result = accepted([], []);
 
-            check.should.equal(3);
+            result.should.be.a.String();
         });
 
-        it('Should throw an error if the second parameter is not an array', function() {
-            let check = 1;
-            try {
-                accepted({}, {});
-                check = 2;
-            } catch (e) {
-                check = 3;
-            }
+        it('Should throw an error if the second parameter is not an Array or String', function() {
+            let result = accepted({}, {});
 
-            check.should.equal(3);
+            result.should.be.a.String();
         });
     });
 
@@ -56,5 +44,29 @@ describe('accepted', function () {
             result.should.be.a.Boolean();
             result.should.equal(false);
         });
+
+        it('Should return true if the second parameter is a String', function() {
+            const result = accepted(obj, 'foo');
+            result.should.be.a.Boolean();
+            result.should.equal(true);
+        });
+
+        it('Should return false if the second parameter is a non existent String', function() {
+            const result = accepted(obj, 'non-existend');
+            result.should.be.a.Boolean();
+            result.should.equal(true);
+        });
+
+        it('Should return true if a custom object has a required property', function() {
+            const result = accepted(new Foo(), 'foo');
+            result.should.be.a.Boolean();
+            result.should.equal(true);
+        })
     })
 });
+
+class Foo {
+    constructor() {
+        this.foo = 'bar'
+    }
+}
